@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace GestionEtudiant
 {
-    public partial class Form1 : Form
+    public partial class mainWindow : Form
     {
-        public Form1()
+        public mainWindow()
         {
             InitializeComponent();
         }
+
     }
 }
