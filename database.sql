@@ -1,3 +1,6 @@
+create database gestion_etudiant;
+USE gestion_etudiant
+
 create table filiere
 (
 	id_filiere int primary key identity(1,1),
