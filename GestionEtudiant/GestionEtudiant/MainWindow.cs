@@ -18,5 +18,9 @@ namespace GestionEtudiant
 
         }
 
+        private void ajouterFiliereBox_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
