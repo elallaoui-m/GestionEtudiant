@@ -15,6 +15,7 @@ namespace GestionEtudiant
         public mainWindow()
         {
             InitializeComponent();
+
         }
 
     }
