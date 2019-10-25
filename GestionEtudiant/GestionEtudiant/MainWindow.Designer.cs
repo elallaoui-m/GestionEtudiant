@@ -119,6 +119,7 @@
             this.EtudiantPage.TabIndex = 2;
             this.EtudiantPage.Text = "Etudiant";
             this.EtudiantPage.UseVisualStyleBackColor = true;
+            this.EtudiantPage.Click += new System.EventHandler(this.EtudiantPage_Click);
             // 
             // FilierePage
             // 

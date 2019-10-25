@@ -22,5 +22,10 @@ namespace GestionEtudiant
         {
 
         }
+
+        private void EtudiantPage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

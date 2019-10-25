@@ -22,7 +22,7 @@ namespace GestionEtudiant
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="GESTION_ETUDIANT_Projet")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="gestion_etudiant")]
 	public partial class DataClasses1DataContext : System.Data.Linq.DataContext
 	{
 		
@@ -30,16 +30,16 @@ namespace GestionEtudiant
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
-    partial void Insertetudiant(etudiant instance);
-    partial void Updateetudiant(etudiant instance);
-    partial void Deleteetudiant(etudiant instance);
+    partial void InsertEtudiant(Etudiant instance);
+    partial void UpdateEtudiant(Etudiant instance);
+    partial void DeleteEtudiant(Etudiant instance);
     partial void Insertfiliere(filiere instance);
     partial void Updatefiliere(filiere instance);
     partial void Deletefiliere(filiere instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::GestionEtudiant.Properties.Settings.Default.GESTION_ETUDIANT_ProjetConnectionString, mappingSource)
+				base(global::GestionEtudiant.Properties.Settings.Default.gestion_etudiantConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -68,11 +68,11 @@ namespace GestionEtudiant
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<etudiant> etudiant
+		public System.Data.Linq.Table<Etudiant> Etudiant
 		{
 			get
 			{
-				return this.GetTable<etudiant>();
+				return this.GetTable<Etudiant>();
 			}
 		}
 		
@@ -85,8 +85,8 @@ namespace GestionEtudiant
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.etudiant")]
-	public partial class etudiant : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Etudiant")]
+	public partial class Etudiant : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -135,7 +135,7 @@ namespace GestionEtudiant
     partial void Onid_filiereChanged();
     #endregion
 		
-		public etudiant()
+		public Etudiant()
 		{
 			this._filiere = default(EntityRef<filiere>);
 			OnCreated();
@@ -325,7 +325,7 @@ namespace GestionEtudiant
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="filiere_etudiant", Storage="_filiere", ThisKey="id_filiere", OtherKey="id_filiere", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="filiere_Etudiant", Storage="_filiere", ThisKey="id_filiere", OtherKey="id_filiere", IsForeignKey=true)]
 		public filiere filiere
 		{
 			get
@@ -342,12 +342,12 @@ namespace GestionEtudiant
 					if ((previousValue != null))
 					{
 						this._filiere.Entity = null;
-						previousValue.etudiant.Remove(this);
+						previousValue.Etudiant.Remove(this);
 					}
 					this._filiere.Entity = value;
 					if ((value != null))
 					{
-						value.etudiant.Add(this);
+						value.Etudiant.Add(this);
 						this._id_filiere = value.id_filiere;
 					}
 					else
@@ -390,7 +390,7 @@ namespace GestionEtudiant
 		
 		private string _nom_filiere;
 		
-		private EntitySet<etudiant> _etudiant;
+		private EntitySet<Etudiant> _Etudiant;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
@@ -404,7 +404,7 @@ namespace GestionEtudiant
 		
 		public filiere()
 		{
-			this._etudiant = new EntitySet<etudiant>(new Action<etudiant>(this.attach_etudiant), new Action<etudiant>(this.detach_etudiant));
+			this._Etudiant = new EntitySet<Etudiant>(new Action<Etudiant>(this.attach_Etudiant), new Action<Etudiant>(this.detach_Etudiant));
 			OnCreated();
 		}
 		
@@ -448,16 +448,16 @@ namespace GestionEtudiant
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="filiere_etudiant", Storage="_etudiant", ThisKey="id_filiere", OtherKey="id_filiere")]
-		public EntitySet<etudiant> etudiant
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="filiere_Etudiant", Storage="_Etudiant", ThisKey="id_filiere", OtherKey="id_filiere")]
+		public EntitySet<Etudiant> Etudiant
 		{
 			get
 			{
-				return this._etudiant;
+				return this._Etudiant;
 			}
 			set
 			{
-				this._etudiant.Assign(value);
+				this._Etudiant.Assign(value);
 			}
 		}
 		
@@ -481,13 +481,13 @@ namespace GestionEtudiant
 			}
 		}
 		
-		private void attach_etudiant(etudiant entity)
+		private void attach_Etudiant(Etudiant entity)
 		{
 			this.SendPropertyChanging();
 			entity.filiere = this;
 		}
 		
-		private void detach_etudiant(etudiant entity)
+		private void detach_Etudiant(Etudiant entity)
 		{
 			this.SendPropertyChanging();
 			entity.filiere = null;

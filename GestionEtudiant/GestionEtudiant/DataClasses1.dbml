@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GESTION_ETUDIANT_Projet" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=MOUNIA-PC;Initial Catalog=GESTION_ETUDIANT_Projet;Integrated Security=True" SettingsObjectName="GestionEtudiant.Properties.Settings" SettingsPropertyName="GESTION_ETUDIANT_ProjetConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.etudiant" Member="etudiant">
-    <Type Name="etudiant">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gestion_etudiant" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MOUNIA-PC;Initial Catalog=gestion_etudiant;Integrated Security=True" SettingsObjectName="GestionEtudiant.Properties.Settings" SettingsPropertyName="gestion_etudiantConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Etudiant" Member="Etudiant">
+    <Type Name="Etudiant">
       <Column Name="id_etudiant" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="cne" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="nom" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
@@ -11,14 +11,14 @@
       <Column Name="date_naissance" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="tele" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
       <Column Name="id_filiere" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="filiere_etudiant" Member="filiere" ThisKey="id_filiere" OtherKey="id_filiere" Type="filiere" IsForeignKey="true" />
+      <Association Name="filiere_Etudiant" Member="filiere" ThisKey="id_filiere" OtherKey="id_filiere" Type="filiere" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.filiere" Member="filiere">
     <Type Name="filiere">
       <Column Name="id_filiere" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="nom_filiere" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
-      <Association Name="filiere_etudiant" Member="etudiant" ThisKey="id_filiere" OtherKey="id_filiere" Type="etudiant" />
+      <Association Name="filiere_Etudiant" Member="Etudiant" ThisKey="id_filiere" OtherKey="id_filiere" Type="Etudiant" />
     </Type>
   </Table>
 </Database>

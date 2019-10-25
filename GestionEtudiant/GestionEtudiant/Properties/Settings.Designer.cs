@@ -33,5 +33,15 @@ namespace GestionEtudiant.Properties {
                 return ((string)(this["GESTION_ETUDIANT_ProjetConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MOUNIA-PC;Initial Catalog=gestion_etudiant;Integrated Security=True")]
+        public string gestion_etudiantConnectionString {
+            get {
+                return ((string)(this["gestion_etudiantConnectionString"]));
+            }
+        }
     }
 }
