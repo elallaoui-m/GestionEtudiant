@@ -103,5 +103,20 @@ namespace GestionEtudiant
             etu.id_filiere = Int32.Parse((string)comboBox1.SelectedValue);
             cl.SubmitChanges();
         }
+
+        private void Tri_DCS_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Descending);
+        }
+
+        private void Tri_CRS_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Ascending);
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }

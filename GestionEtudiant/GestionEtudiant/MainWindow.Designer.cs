@@ -30,6 +30,7 @@
         {
             this.StatistiquePage = new System.Windows.Forms.TabPage();
             this.EtudiantPage = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cne = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,7 +77,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.TabControl();
             this.Reporting = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.EtudiantPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -120,6 +120,15 @@
             this.EtudiantPage.Text = "Etudiant";
             this.EtudiantPage.UseVisualStyleBackColor = true;
             this.EtudiantPage.Click += new System.EventHandler(this.EtudiantPage_Click);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(174, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(200, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -224,6 +233,7 @@
             this.Tri_DCS.TabIndex = 5;
             this.Tri_DCS.Text = "Tri décroissant";
             this.Tri_DCS.UseVisualStyleBackColor = true;
+            this.Tri_DCS.Click += new System.EventHandler(this.Tri_DCS_Click);
             // 
             // Tri_CRS
             // 
@@ -233,6 +243,7 @@
             this.Tri_CRS.TabIndex = 4;
             this.Tri_CRS.Text = "Tri croissant";
             this.Tri_CRS.UseVisualStyleBackColor = true;
+            this.Tri_CRS.Click += new System.EventHandler(this.Tri_CRS_Click);
             // 
             // charger_donnes
             // 
@@ -548,14 +559,6 @@
             this.Reporting.TabIndex = 4;
             this.Reporting.Text = "ReportingPage";
             this.Reporting.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(174, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 11;
             // 
             // mainWindow
             // 
