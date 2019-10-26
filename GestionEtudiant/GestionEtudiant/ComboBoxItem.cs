@@ -18,3 +18,4 @@
             return Text;
         }
     }
+}

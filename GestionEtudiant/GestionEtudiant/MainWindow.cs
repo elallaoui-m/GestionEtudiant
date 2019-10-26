@@ -32,7 +32,7 @@ namespace GestionEtudiant
             p.nom = textBox2.Text;
             p.prenom = textBox3.Text;
             p.adresse = textBox4.Text;
-            p.sexe = choix;
+            p.sexe = choix[0];
             p.date_naissance = dateTimePicker1.Value;
             p.tele = textBox5.Text;
             ComboBoxItem cbm = (ComboBoxItem)comboBox2.SelectedItem;
@@ -96,7 +96,7 @@ namespace GestionEtudiant
             etu.nom = textBox2.Text;
             etu.prenom = textBox3.Text;
             etu.adresse = textBox4.Text;
-            etu.sexe = choix;
+            etu.sexe = choix[0];
             etu.date_naissance = dateTimePicker1.Value;
             
             etu.tele = textBox5.Text;
