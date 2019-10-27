@@ -140,5 +140,11 @@ namespace GestionEtudiant
         {
 
         }
+
+        private void ReportingGenerate_Click(object sender, EventArgs e)
+        {
+            CrystalReportForm crystalReportForm = new CrystalReportForm();
+            crystalReportForm.Show();
+        }
     }
 }
