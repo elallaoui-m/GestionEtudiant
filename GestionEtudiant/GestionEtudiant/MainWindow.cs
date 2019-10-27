@@ -118,5 +118,27 @@ namespace GestionEtudiant
         {
            
         }
+
+        private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (reportingComboBox.SelectedIndex == 1)
+            {
+                reportingButton.Show();
+                reportingTextBox.Show();
+                reportingLabel.Show();
+                reportingGenerate.Hide();
+            } else
+            {
+                reportingButton.Hide();
+                reportingTextBox.Hide();
+                reportingLabel.Hide();
+                reportingGenerate.Show();
+            }
+        }
+
+        private void TextBox6_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

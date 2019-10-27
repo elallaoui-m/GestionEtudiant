@@ -77,6 +77,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.TabControl();
             this.Reporting = new System.Windows.Forms.TabPage();
+            this.reportingTextBox = new System.Windows.Forms.TextBox();
+            this.reportingLabel = new System.Windows.Forms.Label();
+            this.reportingComboBox = new System.Windows.Forms.ComboBox();
+            this.reportingButton = new System.Windows.Forms.Button();
+            this.reportingGenerate = new System.Windows.Forms.Button();
             this.EtudiantPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -85,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tableFiliere)).BeginInit();
             this.ajouterFiliereBox.SuspendLayout();
             this.menu.SuspendLayout();
+            this.Reporting.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatistiquePage
@@ -552,6 +558,11 @@
             // 
             // Reporting
             // 
+            this.Reporting.Controls.Add(this.reportingGenerate);
+            this.Reporting.Controls.Add(this.reportingButton);
+            this.Reporting.Controls.Add(this.reportingTextBox);
+            this.Reporting.Controls.Add(this.reportingLabel);
+            this.Reporting.Controls.Add(this.reportingComboBox);
             this.Reporting.Location = new System.Drawing.Point(4, 25);
             this.Reporting.Name = "Reporting";
             this.Reporting.Padding = new System.Windows.Forms.Padding(3);
@@ -559,6 +570,58 @@
             this.Reporting.TabIndex = 4;
             this.Reporting.Text = "ReportingPage";
             this.Reporting.UseVisualStyleBackColor = true;
+            // 
+            // reportingTextBox
+            // 
+            this.reportingTextBox.Location = new System.Drawing.Point(341, 198);
+            this.reportingTextBox.Name = "reportingTextBox";
+            this.reportingTextBox.Size = new System.Drawing.Size(132, 20);
+            this.reportingTextBox.TabIndex = 2;
+            this.reportingTextBox.Visible = false;
+            this.reportingTextBox.TextChanged += new System.EventHandler(this.TextBox6_TextChanged);
+            // 
+            // reportingLabel
+            // 
+            this.reportingLabel.AutoSize = true;
+            this.reportingLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.reportingLabel.Location = new System.Drawing.Point(245, 201);
+            this.reportingLabel.Name = "reportingLabel";
+            this.reportingLabel.Size = new System.Drawing.Size(81, 13);
+            this.reportingLabel.TabIndex = 1;
+            this.reportingLabel.Text = "Saisir un CNE : ";
+            this.reportingLabel.Visible = false;
+            // 
+            // reportingComboBox
+            // 
+            this.reportingComboBox.FormattingEnabled = true;
+            this.reportingComboBox.Items.AddRange(new object[] {
+            "Tous les étudiants",
+            "Chaque étudiant"});
+            this.reportingComboBox.Location = new System.Drawing.Point(314, 94);
+            this.reportingComboBox.Name = "reportingComboBox";
+            this.reportingComboBox.Size = new System.Drawing.Size(190, 21);
+            this.reportingComboBox.TabIndex = 0;
+            this.reportingComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox3_SelectedIndexChanged);
+            // 
+            // reportingButton
+            // 
+            this.reportingButton.Location = new System.Drawing.Point(359, 266);
+            this.reportingButton.Name = "reportingButton";
+            this.reportingButton.Size = new System.Drawing.Size(104, 24);
+            this.reportingButton.TabIndex = 3;
+            this.reportingButton.Text = "Afficher";
+            this.reportingButton.UseVisualStyleBackColor = true;
+            this.reportingButton.Visible = false;
+            // 
+            // reportingGenerate
+            // 
+            this.reportingGenerate.Location = new System.Drawing.Point(359, 169);
+            this.reportingGenerate.Name = "reportingGenerate";
+            this.reportingGenerate.Size = new System.Drawing.Size(104, 23);
+            this.reportingGenerate.TabIndex = 4;
+            this.reportingGenerate.Text = "Afficher";
+            this.reportingGenerate.UseVisualStyleBackColor = true;
+            this.reportingGenerate.Visible = false;
             // 
             // mainWindow
             // 
@@ -580,6 +643,8 @@
             this.ajouterFiliereBox.ResumeLayout(false);
             this.ajouterFiliereBox.PerformLayout();
             this.menu.ResumeLayout(false);
+            this.Reporting.ResumeLayout(false);
+            this.Reporting.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -635,6 +700,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox reportingComboBox;
+        private System.Windows.Forms.TextBox reportingTextBox;
+        private System.Windows.Forms.Label reportingLabel;
+        private System.Windows.Forms.Button reportingButton;
+        private System.Windows.Forms.Button reportingGenerate;
     }
 }
 
