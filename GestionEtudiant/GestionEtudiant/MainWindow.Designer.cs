@@ -77,11 +77,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.menu = new System.Windows.Forms.TabControl();
             this.Reporting = new System.Windows.Forms.TabPage();
+            this.reportingGenerate = new System.Windows.Forms.Button();
+            this.reportingButton = new System.Windows.Forms.Button();
             this.reportingTextBox = new System.Windows.Forms.TextBox();
             this.reportingLabel = new System.Windows.Forms.Label();
             this.reportingComboBox = new System.Windows.Forms.ComboBox();
-            this.reportingButton = new System.Windows.Forms.Button();
-            this.reportingGenerate = new System.Windows.Forms.Button();
             this.EtudiantPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -571,6 +571,28 @@
             this.Reporting.Text = "ReportingPage";
             this.Reporting.UseVisualStyleBackColor = true;
             // 
+            // reportingGenerate
+            // 
+            this.reportingGenerate.Location = new System.Drawing.Point(359, 169);
+            this.reportingGenerate.Name = "reportingGenerate";
+            this.reportingGenerate.Size = new System.Drawing.Size(104, 23);
+            this.reportingGenerate.TabIndex = 4;
+            this.reportingGenerate.Text = "Afficher";
+            this.reportingGenerate.UseVisualStyleBackColor = true;
+            this.reportingGenerate.Visible = false;
+            this.reportingGenerate.Click += new System.EventHandler(this.ReportingGenerate_Click);
+            // 
+            // reportingButton
+            // 
+            this.reportingButton.Location = new System.Drawing.Point(359, 247);
+            this.reportingButton.Name = "reportingButton";
+            this.reportingButton.Size = new System.Drawing.Size(104, 24);
+            this.reportingButton.TabIndex = 3;
+            this.reportingButton.Text = "Afficher";
+            this.reportingButton.UseVisualStyleBackColor = true;
+            this.reportingButton.Visible = false;
+            this.reportingButton.Click += new System.EventHandler(this.ReportingButton_Click);
+            // 
             // reportingTextBox
             // 
             this.reportingTextBox.Location = new System.Drawing.Point(341, 198);
@@ -602,26 +624,6 @@
             this.reportingComboBox.Size = new System.Drawing.Size(190, 21);
             this.reportingComboBox.TabIndex = 0;
             this.reportingComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox3_SelectedIndexChanged);
-            // 
-            // reportingButton
-            // 
-            this.reportingButton.Location = new System.Drawing.Point(359, 266);
-            this.reportingButton.Name = "reportingButton";
-            this.reportingButton.Size = new System.Drawing.Size(104, 24);
-            this.reportingButton.TabIndex = 3;
-            this.reportingButton.Text = "Afficher";
-            this.reportingButton.UseVisualStyleBackColor = true;
-            this.reportingButton.Visible = false;
-            // 
-            // reportingGenerate
-            // 
-            this.reportingGenerate.Location = new System.Drawing.Point(359, 169);
-            this.reportingGenerate.Name = "reportingGenerate";
-            this.reportingGenerate.Size = new System.Drawing.Size(104, 23);
-            this.reportingGenerate.TabIndex = 4;
-            this.reportingGenerate.Text = "Afficher";
-            this.reportingGenerate.UseVisualStyleBackColor = true;
-            this.reportingGenerate.Visible = false;
             // 
             // mainWindow
             // 

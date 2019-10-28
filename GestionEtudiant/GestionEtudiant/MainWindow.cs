@@ -14,6 +14,7 @@ namespace GestionEtudiant
     {
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
+        String cin;
         public mainWindow()
         {
             InitializeComponent();
@@ -139,6 +140,20 @@ namespace GestionEtudiant
         private void TextBox6_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ReportingGenerate_Click(object sender, EventArgs e)
+        {
+            ReportForm reportForm = new ReportForm();
+            reportForm.Show();
+        }
+
+        private void ReportingButton_Click(object sender, EventArgs e)
+        {
+            cin = reportingTextBox.Text;
+            ReportFormSingleStudent reportFormSingleStudent = new ReportFormSingleStudent();
+            reportFormSingleStudent.getCIN(cin.ToString());
+            reportFormSingleStudent.Show();
         }
     }
 }
