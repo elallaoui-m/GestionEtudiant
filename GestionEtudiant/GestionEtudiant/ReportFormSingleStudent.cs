@@ -16,8 +16,10 @@ namespace GestionEtudiant
     {
 
         String CIN;
-        String connectionString = "Server = localhost; Database = gestion_etudiant ; Integrated Security = True;";
-        
+        String connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["gestion_etudiantConnectionString"].ToString();
+        DataClasses1DataContext cl = new DataClasses1DataContext();
+
+
 
         public ReportFormSingleStudent()
         {
@@ -27,17 +29,10 @@ namespace GestionEtudiant
         private void ReportFormSingleStudent_Load(object sender, EventArgs e)
         {
 
-        }
 
-        public void getCIN (String a)
-        {
-            CIN = a.ToString();
-        }
-
-        private void Button1_Click(object sender, EventArgs e)
-        {
+            
             SingleStudent cr = new SingleStudent();
-            string sql = "SELECT * FROM Etudiant WHERE CNE = "+CIN+"";
+            string sql = "SELECT * FROM Etudiant WHERE CNE = " + CIN + "";
             DataSet ds = new DataSet();
             SqlDataAdapter adapter = new SqlDataAdapter(sql, connectionString);
 
@@ -47,6 +42,14 @@ namespace GestionEtudiant
             cr.SetDataSource(ds.Tables["Etudiant"]);
             crystalReportViewer1.ReportSource = cr;
             crystalReportViewer1.Refresh();
+
         }
+
+        public void getCIN (String a)
+        {
+            CIN = a.ToString();
+        }
+
+
     }
 }

@@ -28,19 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Afficher = new System.Windows.Forms.Button();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.SuspendLayout();
-            // 
-            // Afficher
-            // 
-            this.Afficher.Location = new System.Drawing.Point(367, 13);
-            this.Afficher.Name = "Afficher";
-            this.Afficher.Size = new System.Drawing.Size(112, 23);
-            this.Afficher.TabIndex = 0;
-            this.Afficher.Text = "Afficher";
-            this.Afficher.UseVisualStyleBackColor = true;
-            this.Afficher.Click += new System.EventHandler(this.Button1_Click);
             // 
             // crystalReportViewer1
             // 
@@ -58,7 +47,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 621);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Controls.Add(this.Afficher);
             this.Name = "ReportFormSingleStudent";
             this.Text = "ReportFormSingleStudent";
             this.Load += new System.EventHandler(this.ReportFormSingleStudent_Load);
@@ -67,8 +55,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button Afficher;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
     }
 }

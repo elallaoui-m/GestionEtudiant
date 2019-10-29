@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StatistiquePage = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.EtudiantPage = new System.Windows.Forms.TabPage();
+            this.resetForm = new System.Windows.Forms.Button();
             this.cherche_etudiant_combobox = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Importer = new System.Windows.Forms.Button();
@@ -79,10 +80,10 @@
             this.Reporting = new System.Windows.Forms.TabPage();
             this.reportingGenerate = new System.Windows.Forms.Button();
             this.reportingButton = new System.Windows.Forms.Button();
-            this.reportingTextBox = new System.Windows.Forms.TextBox();
             this.reportingLabel = new System.Windows.Forms.Label();
             this.reportingComboBox = new System.Windows.Forms.ComboBox();
-            this.resetForm = new System.Windows.Forms.Button();
+            this.resfreshButton = new System.Windows.Forms.Button();
+            this.CINreportingCombobox = new System.Windows.Forms.ComboBox();
             this.StatistiquePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.EtudiantPage.SuspendLayout();
@@ -104,24 +105,24 @@
             this.StatistiquePage.Margin = new System.Windows.Forms.Padding(2);
             this.StatistiquePage.Name = "StatistiquePage";
             this.StatistiquePage.Padding = new System.Windows.Forms.Padding(2);
-            this.StatistiquePage.Size = new System.Drawing.Size(824, 446);
+            this.StatistiquePage.Size = new System.Drawing.Size(932, 437);
             this.StatistiquePage.TabIndex = 3;
             this.StatistiquePage.Text = "Statistique";
             this.StatistiquePage.UseVisualStyleBackColor = true;
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(59, 33);
             this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Nombre Etudiant";
-            this.chart1.Series.Add(series2);
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Nombre Etudiant";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(662, 306);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -144,10 +145,20 @@
             this.EtudiantPage.Margin = new System.Windows.Forms.Padding(2);
             this.EtudiantPage.Name = "EtudiantPage";
             this.EtudiantPage.Padding = new System.Windows.Forms.Padding(2);
-            this.EtudiantPage.Size = new System.Drawing.Size(824, 446);
+            this.EtudiantPage.Size = new System.Drawing.Size(932, 437);
             this.EtudiantPage.TabIndex = 2;
             this.EtudiantPage.Text = "Etudiant";
             this.EtudiantPage.UseVisualStyleBackColor = true;
+            // 
+            // resetForm
+            // 
+            this.resetForm.Location = new System.Drawing.Point(497, 402);
+            this.resetForm.Name = "resetForm";
+            this.resetForm.Size = new System.Drawing.Size(75, 23);
+            this.resetForm.TabIndex = 12;
+            this.resetForm.Text = "Reinstaliser le formulaire";
+            this.resetForm.UseVisualStyleBackColor = true;
+            this.resetForm.Click += new System.EventHandler(this.resetForm_Click);
             // 
             // cherche_etudiant_combobox
             // 
@@ -164,7 +175,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(422, 141);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(390, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(502, 178);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -209,7 +220,7 @@
             // 
             // Tri_DCS
             // 
-            this.Tri_DCS.Location = new System.Drawing.Point(697, 89);
+            this.Tri_DCS.Location = new System.Drawing.Point(822, 89);
             this.Tri_DCS.Name = "Tri_DCS";
             this.Tri_DCS.Size = new System.Drawing.Size(92, 23);
             this.Tri_DCS.TabIndex = 5;
@@ -219,7 +230,7 @@
             // 
             // Tri_CRS
             // 
-            this.Tri_CRS.Location = new System.Drawing.Point(580, 89);
+            this.Tri_CRS.Location = new System.Drawing.Point(642, 89);
             this.Tri_CRS.Name = "Tri_CRS";
             this.Tri_CRS.Size = new System.Drawing.Size(86, 23);
             this.Tri_CRS.TabIndex = 4;
@@ -425,7 +436,7 @@
             this.FilierePage.Margin = new System.Windows.Forms.Padding(2);
             this.FilierePage.Name = "FilierePage";
             this.FilierePage.Padding = new System.Windows.Forms.Padding(2);
-            this.FilierePage.Size = new System.Drawing.Size(824, 446);
+            this.FilierePage.Size = new System.Drawing.Size(932, 437);
             this.FilierePage.TabIndex = 0;
             this.FilierePage.Text = "Filière";
             this.FilierePage.UseVisualStyleBackColor = true;
@@ -481,7 +492,7 @@
             this.listeFiliereBox.Margin = new System.Windows.Forms.Padding(2);
             this.listeFiliereBox.Name = "listeFiliereBox";
             this.listeFiliereBox.Padding = new System.Windows.Forms.Padding(2);
-            this.listeFiliereBox.Size = new System.Drawing.Size(468, 237);
+            this.listeFiliereBox.Size = new System.Drawing.Size(576, 237);
             this.listeFiliereBox.TabIndex = 0;
             this.listeFiliereBox.TabStop = false;
             this.listeFiliereBox.Text = "Liste des filieres";
@@ -518,7 +529,7 @@
             this.tableFiliere.Name = "tableFiliere";
             this.tableFiliere.RowHeadersWidth = 51;
             this.tableFiliere.RowTemplate.Height = 24;
-            this.tableFiliere.Size = new System.Drawing.Size(468, 183);
+            this.tableFiliere.Size = new System.Drawing.Size(576, 183);
             this.tableFiliere.TabIndex = 0;
             // 
             // ajouterFiliereBox
@@ -571,32 +582,32 @@
             this.menu.Controls.Add(this.StatistiquePage);
             this.menu.Controls.Add(this.Reporting);
             this.menu.ItemSize = new System.Drawing.Size(49, 21);
-            this.menu.Location = new System.Drawing.Point(-1, 0);
+            this.menu.Location = new System.Drawing.Point(-1, 27);
             this.menu.Margin = new System.Windows.Forms.Padding(2);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Drawing.Point(20, 3);
             this.menu.SelectedIndex = 0;
-            this.menu.Size = new System.Drawing.Size(832, 475);
+            this.menu.Size = new System.Drawing.Size(940, 466);
             this.menu.TabIndex = 0;
             // 
             // Reporting
             // 
+            this.Reporting.Controls.Add(this.CINreportingCombobox);
             this.Reporting.Controls.Add(this.reportingGenerate);
             this.Reporting.Controls.Add(this.reportingButton);
-            this.Reporting.Controls.Add(this.reportingTextBox);
             this.Reporting.Controls.Add(this.reportingLabel);
             this.Reporting.Controls.Add(this.reportingComboBox);
             this.Reporting.Location = new System.Drawing.Point(4, 25);
             this.Reporting.Name = "Reporting";
             this.Reporting.Padding = new System.Windows.Forms.Padding(3);
-            this.Reporting.Size = new System.Drawing.Size(824, 446);
+            this.Reporting.Size = new System.Drawing.Size(932, 437);
             this.Reporting.TabIndex = 4;
             this.Reporting.Text = "ReportingPage";
             this.Reporting.UseVisualStyleBackColor = true;
             // 
             // reportingGenerate
             // 
-            this.reportingGenerate.Location = new System.Drawing.Point(359, 169);
+            this.reportingGenerate.Location = new System.Drawing.Point(422, 164);
             this.reportingGenerate.Name = "reportingGenerate";
             this.reportingGenerate.Size = new System.Drawing.Size(104, 23);
             this.reportingGenerate.TabIndex = 4;
@@ -607,7 +618,7 @@
             // 
             // reportingButton
             // 
-            this.reportingButton.Location = new System.Drawing.Point(359, 247);
+            this.reportingButton.Location = new System.Drawing.Point(422, 242);
             this.reportingButton.Name = "reportingButton";
             this.reportingButton.Size = new System.Drawing.Size(104, 24);
             this.reportingButton.TabIndex = 3;
@@ -616,23 +627,15 @@
             this.reportingButton.Visible = false;
             this.reportingButton.Click += new System.EventHandler(this.ReportingButton_Click);
             // 
-            // reportingTextBox
-            // 
-            this.reportingTextBox.Location = new System.Drawing.Point(341, 198);
-            this.reportingTextBox.Name = "reportingTextBox";
-            this.reportingTextBox.Size = new System.Drawing.Size(132, 20);
-            this.reportingTextBox.TabIndex = 2;
-            this.reportingTextBox.Visible = false;
-            // 
             // reportingLabel
             // 
             this.reportingLabel.AutoSize = true;
             this.reportingLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.reportingLabel.Location = new System.Drawing.Point(245, 201);
+            this.reportingLabel.Location = new System.Drawing.Point(271, 197);
             this.reportingLabel.Name = "reportingLabel";
-            this.reportingLabel.Size = new System.Drawing.Size(81, 13);
+            this.reportingLabel.Size = new System.Drawing.Size(100, 13);
             this.reportingLabel.TabIndex = 1;
-            this.reportingLabel.Text = "Saisir un CNE : ";
+            this.reportingLabel.Text = "Selectionner CNE : ";
             this.reportingLabel.Visible = false;
             // 
             // reportingComboBox
@@ -641,27 +644,37 @@
             this.reportingComboBox.Items.AddRange(new object[] {
             "Tous les étudiants",
             "Chaque étudiant"});
-            this.reportingComboBox.Location = new System.Drawing.Point(314, 94);
+            this.reportingComboBox.Location = new System.Drawing.Point(377, 89);
             this.reportingComboBox.Name = "reportingComboBox";
             this.reportingComboBox.Size = new System.Drawing.Size(190, 21);
             this.reportingComboBox.TabIndex = 0;
             this.reportingComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox3_SelectedIndexChanged);
             // 
-            // resetForm
+            // resfreshButton
             // 
-            this.resetForm.Location = new System.Drawing.Point(497, 402);
-            this.resetForm.Name = "resetForm";
-            this.resetForm.Size = new System.Drawing.Size(75, 23);
-            this.resetForm.TabIndex = 12;
-            this.resetForm.Text = "Reinstaliser le formulaire";
-            this.resetForm.UseVisualStyleBackColor = true;
-            this.resetForm.Click += new System.EventHandler(this.resetForm_Click);
+            this.resfreshButton.Location = new System.Drawing.Point(752, -1);
+            this.resfreshButton.Name = "resfreshButton";
+            this.resfreshButton.Size = new System.Drawing.Size(75, 23);
+            this.resfreshButton.TabIndex = 1;
+            this.resfreshButton.Text = "Actualiser ";
+            this.resfreshButton.UseVisualStyleBackColor = true;
+            this.resfreshButton.Click += new System.EventHandler(this.resfreshButton_Click);
+            // 
+            // CINreportingCombobox
+            // 
+            this.CINreportingCombobox.FormattingEnabled = true;
+            this.CINreportingCombobox.Location = new System.Drawing.Point(377, 194);
+            this.CINreportingCombobox.Name = "CINreportingCombobox";
+            this.CINreportingCombobox.Size = new System.Drawing.Size(190, 21);
+            this.CINreportingCombobox.TabIndex = 5;
+            this.CINreportingCombobox.Visible = false;
             // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 470);
+            this.ClientSize = new System.Drawing.Size(939, 494);
+            this.Controls.Add(this.resfreshButton);
             this.Controls.Add(this.menu);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainWindow";
@@ -732,7 +745,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cherche_etudiant_combobox;
         private System.Windows.Forms.ComboBox reportingComboBox;
-        private System.Windows.Forms.TextBox reportingTextBox;
         private System.Windows.Forms.Label reportingLabel;
         private System.Windows.Forms.Button reportingButton;
         private System.Windows.Forms.Button reportingGenerate;
@@ -742,6 +754,8 @@
         private System.Windows.Forms.TextBox ModifiedName;
         private System.Windows.Forms.Button ValidationButton;
         private System.Windows.Forms.Button resetForm;
+        private System.Windows.Forms.Button resfreshButton;
+        private System.Windows.Forms.ComboBox CINreportingCombobox;
     }
 }
 

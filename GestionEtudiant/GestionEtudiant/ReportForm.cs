@@ -13,17 +13,17 @@ namespace GestionEtudiant
 {
     public partial class ReportForm : Form
     {
-        String connectionString = "Server = localhost\\SQLEXPRESS; Database = gestion_etudiant ; Integrated Security = True;";
-        SqlConnection cnn;
-        SqlCommand command;
-        SqlDataReader myReader;
+        String connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["gestion_etudiantConnectionString"].ToString();
+
 
         public ReportForm()
         {
             InitializeComponent();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+
+
+        private void CrystalReportViewer1_Load(object sender, EventArgs e)
         {
             AllStudents cr = new AllStudents();
             string sql = "SELECT * FROM Etudiant ";
@@ -36,11 +36,6 @@ namespace GestionEtudiant
             cr.SetDataSource(ds.Tables["Etudiant"]);
             crystalReportViewer1.ReportSource = cr;
             crystalReportViewer1.Refresh();
-        }
-
-        private void CrystalReportViewer1_Load(object sender, EventArgs e)
-        {
-           
         }
     }
 }

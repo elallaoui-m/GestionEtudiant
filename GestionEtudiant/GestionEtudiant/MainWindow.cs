@@ -29,6 +29,7 @@ namespace GestionEtudiant
             FillFiliereCombobox();
             fillStatisticsChart();
             FillChercherEtudiant();
+            FillReportingCombobox();
             ModifiyingPannel.Visible = false;
         }
 
@@ -44,6 +45,7 @@ namespace GestionEtudiant
             cl.SubmitChanges();
             MessageBox.Show("Etudiant supprime");
             CleanTextBoxs();
+            loadDataEtudiants();
         }
 
         private void Modifier_Click(object sender, EventArgs e)
@@ -86,13 +88,13 @@ namespace GestionEtudiant
             if (reportingComboBox.SelectedIndex == 1)
             {
                 reportingButton.Show();
-                reportingTextBox.Show();
+                CINreportingCombobox.Show();
                 reportingLabel.Show();
                 reportingGenerate.Hide();
             } else
             {
                 reportingButton.Hide();
-                reportingTextBox.Hide();
+                CINreportingCombobox.Hide();
                 reportingLabel.Hide();
                 reportingGenerate.Show();
             }
@@ -106,7 +108,9 @@ namespace GestionEtudiant
 
         private void ReportingButton_Click(object sender, EventArgs e)
         {
-            cin = reportingTextBox.Text;
+
+            ComboBoxItem cnb = (ComboBoxItem)CINreportingCombobox.SelectedItem;
+            cin = cnb.Value1.ToString();
             ReportFormSingleStudent reportFormSingleStudent = new ReportFormSingleStudent();
             reportFormSingleStudent.getCIN(cin.ToString());
             reportFormSingleStudent.Show();
@@ -144,6 +148,7 @@ namespace GestionEtudiant
 
         void FillFiliereCombobox()
         {
+            choixFiliereCombo.Items.Clear();
             var fil = from f in cl.filiere orderby f.nom_filiere select f;
             choixFiliereCombo.Items.Clear();
             foreach (var u in fil)
@@ -154,9 +159,9 @@ namespace GestionEtudiant
 
         private void Ajouter_Click(object sender, EventArgs e)
         {
-            ComboBoxItem cmb = (ComboBoxItem)cherche_etudiant_combobox.SelectedItem;
+            var cne = cne_textBox.Text;
             var x = from et in cl.Etudiant
-                    where et.cne == cmb.Value1.ToString()
+                    where et.cne == cne
                     select et;
 
             if(x.Count() > 0)
@@ -172,6 +177,7 @@ namespace GestionEtudiant
             }
             else choix = "F";
             var etu = new Etudiant();
+            etu.cne = cne;
             etu.nom = nom_textbox.Text;
             etu.prenom = prenom_textbox.Text;
             etu.adresse = adresse_textbox.Text;
@@ -181,6 +187,7 @@ namespace GestionEtudiant
             etu.tele = tele_textbox.Text;
             ComboBoxItem cnb = (ComboBoxItem)choixFiliereCombo.SelectedItem;
             etu.id_filiere = cnb.Value1;
+            cl.Etudiant.InsertOnSubmit(etu);
             cl.SubmitChanges();
             MessageBox.Show("Inserted succesfuly");
             dataGridView1.Refresh();
@@ -199,6 +206,7 @@ namespace GestionEtudiant
             tele_textbox.Text = "";
             choixFiliereCombo.Text = "";
             date_naissance.Value = DateTimePicker.MinimumDateTime;
+            cherche_etudiant_combobox.Text = "";
 
 
         }
@@ -291,6 +299,7 @@ namespace GestionEtudiant
 
         void FillChercherEtudiant()
         {
+            cherche_etudiant_combobox.Items.Clear();
             var x = from e in cl.Etudiant select e;
 
             foreach (var etu in x)
@@ -349,8 +358,7 @@ namespace GestionEtudiant
                           d.nom_filiere
                       };
 
-            //Console.Write(etu.FirstOrDefault().cne);
-
+     
             dataGridView1.DataSource = etu;
         }
 
@@ -375,6 +383,26 @@ namespace GestionEtudiant
         private void resetForm_Click(object sender, EventArgs e)
         {
             CleanTextBoxs();
+        }
+
+        void FillReportingCombobox()
+        {
+            CINreportingCombobox.Items.Clear();
+            var x = from e in cl.Etudiant select e;
+
+            foreach (var etu in x)
+            {
+                CINreportingCombobox.Items.Add(new ComboBoxItem(Int32.Parse(etu.cne), etu.cne + " " + etu.nom));
+            }
+        }
+
+        private void resfreshButton_Click(object sender, EventArgs e)
+        {
+            loadFiliereData();
+            FillFiliereCombobox();
+            fillStatisticsChart();
+            FillChercherEtudiant();
+            FillReportingCombobox();
         }
     }
     }
