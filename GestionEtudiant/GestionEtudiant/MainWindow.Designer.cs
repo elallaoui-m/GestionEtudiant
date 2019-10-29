@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.StatistiquePage = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.EtudiantPage = new System.Windows.Forms.TabPage();
@@ -63,6 +63,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.FilierePage = new System.Windows.Forms.TabPage();
+            this.ModifiyingPannel = new System.Windows.Forms.Panel();
+            this.ValidatioButton = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ModifiedName = new System.Windows.Forms.TextBox();
             this.listeFiliereBox = new System.Windows.Forms.GroupBox();
             this.supprimerFiliereBtn = new System.Windows.Forms.Button();
             this.modifierFiliereBtn = new System.Windows.Forms.Button();
@@ -84,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.FilierePage.SuspendLayout();
+            this.ModifiyingPannel.SuspendLayout();
             this.listeFiliereBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tableFiliere)).BeginInit();
             this.ajouterFiliereBox.SuspendLayout();
@@ -95,9 +100,9 @@
             // 
             this.StatistiquePage.Controls.Add(this.chart1);
             this.StatistiquePage.Location = new System.Drawing.Point(4, 25);
-            this.StatistiquePage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatistiquePage.Margin = new System.Windows.Forms.Padding(2);
             this.StatistiquePage.Name = "StatistiquePage";
-            this.StatistiquePage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.StatistiquePage.Padding = new System.Windows.Forms.Padding(2);
             this.StatistiquePage.Size = new System.Drawing.Size(824, 446);
             this.StatistiquePage.TabIndex = 3;
             this.StatistiquePage.Text = "Statistique";
@@ -105,17 +110,17 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(59, 33);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Nombre Etudiant";
-            this.chart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Nombre Etudiant";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(662, 306);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -134,9 +139,9 @@
             this.EtudiantPage.Controls.Add(this.groupBox1);
             this.EtudiantPage.Controls.Add(this.label2);
             this.EtudiantPage.Location = new System.Drawing.Point(4, 25);
-            this.EtudiantPage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EtudiantPage.Margin = new System.Windows.Forms.Padding(2);
             this.EtudiantPage.Name = "EtudiantPage";
-            this.EtudiantPage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EtudiantPage.Padding = new System.Windows.Forms.Padding(2);
             this.EtudiantPage.Size = new System.Drawing.Size(824, 446);
             this.EtudiantPage.TabIndex = 2;
             this.EtudiantPage.Text = "Etudiant";
@@ -408,16 +413,59 @@
             // 
             // FilierePage
             // 
+            this.FilierePage.Controls.Add(this.ModifiyingPannel);
             this.FilierePage.Controls.Add(this.listeFiliereBox);
             this.FilierePage.Controls.Add(this.ajouterFiliereBox);
             this.FilierePage.Location = new System.Drawing.Point(4, 25);
-            this.FilierePage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FilierePage.Margin = new System.Windows.Forms.Padding(2);
             this.FilierePage.Name = "FilierePage";
-            this.FilierePage.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FilierePage.Padding = new System.Windows.Forms.Padding(2);
             this.FilierePage.Size = new System.Drawing.Size(824, 446);
             this.FilierePage.TabIndex = 0;
             this.FilierePage.Text = "Filière";
             this.FilierePage.UseVisualStyleBackColor = true;
+            // 
+            // ModifiyingPannel
+            // 
+            this.ModifiyingPannel.BackColor = System.Drawing.Color.DimGray;
+            this.ModifiyingPannel.Controls.Add(this.ValidatioButton);
+            this.ModifiyingPannel.Controls.Add(this.label11);
+            this.ModifiyingPannel.Controls.Add(this.ModifiedName);
+            this.ModifiyingPannel.Location = new System.Drawing.Point(223, 52);
+            this.ModifiyingPannel.Name = "ModifiyingPannel";
+            this.ModifiyingPannel.Size = new System.Drawing.Size(308, 128);
+            this.ModifiyingPannel.TabIndex = 1;
+            this.ModifiyingPannel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // ValidatioButton
+            // 
+            this.ValidatioButton.Location = new System.Drawing.Point(121, 97);
+            this.ValidatioButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ValidatioButton.Name = "ValidatioButton";
+            this.ValidatioButton.Size = new System.Drawing.Size(56, 19);
+            this.ValidatioButton.TabIndex = 4;
+            this.ValidatioButton.Text = "Valider";
+            this.ValidatioButton.UseVisualStyleBackColor = true;
+            this.ValidatioButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(13, 57);
+            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(85, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Nouveau Nom : ";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // ModifiedName
+            // 
+            this.ModifiedName.Location = new System.Drawing.Point(97, 54);
+            this.ModifiedName.Margin = new System.Windows.Forms.Padding(2);
+            this.ModifiedName.Name = "ModifiedName";
+            this.ModifiedName.Size = new System.Drawing.Size(166, 20);
+            this.ModifiedName.TabIndex = 2;
             // 
             // listeFiliereBox
             // 
@@ -425,9 +473,9 @@
             this.listeFiliereBox.Controls.Add(this.modifierFiliereBtn);
             this.listeFiliereBox.Controls.Add(this.tableFiliere);
             this.listeFiliereBox.Location = new System.Drawing.Point(336, 84);
-            this.listeFiliereBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listeFiliereBox.Margin = new System.Windows.Forms.Padding(2);
             this.listeFiliereBox.Name = "listeFiliereBox";
-            this.listeFiliereBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listeFiliereBox.Padding = new System.Windows.Forms.Padding(2);
             this.listeFiliereBox.Size = new System.Drawing.Size(468, 237);
             this.listeFiliereBox.TabIndex = 0;
             this.listeFiliereBox.TabStop = false;
@@ -436,28 +484,32 @@
             // supprimerFiliereBtn
             // 
             this.supprimerFiliereBtn.Location = new System.Drawing.Point(226, 22);
-            this.supprimerFiliereBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.supprimerFiliereBtn.Margin = new System.Windows.Forms.Padding(2);
             this.supprimerFiliereBtn.Name = "supprimerFiliereBtn";
             this.supprimerFiliereBtn.Size = new System.Drawing.Size(92, 19);
             this.supprimerFiliereBtn.TabIndex = 1;
             this.supprimerFiliereBtn.Text = "Supprimer";
             this.supprimerFiliereBtn.UseVisualStyleBackColor = true;
+            this.supprimerFiliereBtn.Click += new System.EventHandler(this.supprimerFiliereBtn_Click);
             // 
             // modifierFiliereBtn
             // 
             this.modifierFiliereBtn.Location = new System.Drawing.Point(130, 22);
-            this.modifierFiliereBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.modifierFiliereBtn.Margin = new System.Windows.Forms.Padding(2);
             this.modifierFiliereBtn.Name = "modifierFiliereBtn";
             this.modifierFiliereBtn.Size = new System.Drawing.Size(92, 19);
             this.modifierFiliereBtn.TabIndex = 1;
             this.modifierFiliereBtn.Text = "Modifier";
             this.modifierFiliereBtn.UseVisualStyleBackColor = true;
+            this.modifierFiliereBtn.Click += new System.EventHandler(this.modifierFiliereBtn_Click);
             // 
             // tableFiliere
             // 
+            this.tableFiliere.AllowUserToAddRows = false;
+            this.tableFiliere.AllowUserToDeleteRows = false;
             this.tableFiliere.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableFiliere.Location = new System.Drawing.Point(0, 54);
-            this.tableFiliere.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableFiliere.Margin = new System.Windows.Forms.Padding(2);
             this.tableFiliere.Name = "tableFiliere";
             this.tableFiliere.RowHeadersWidth = 51;
             this.tableFiliere.RowTemplate.Height = 24;
@@ -470,29 +522,29 @@
             this.ajouterFiliereBox.Controls.Add(this.ajouterFiliereInput);
             this.ajouterFiliereBox.Controls.Add(this.label1);
             this.ajouterFiliereBox.Location = new System.Drawing.Point(14, 84);
-            this.ajouterFiliereBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ajouterFiliereBox.Margin = new System.Windows.Forms.Padding(2);
             this.ajouterFiliereBox.Name = "ajouterFiliereBox";
-            this.ajouterFiliereBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ajouterFiliereBox.Padding = new System.Windows.Forms.Padding(2);
             this.ajouterFiliereBox.Size = new System.Drawing.Size(307, 237);
             this.ajouterFiliereBox.TabIndex = 0;
             this.ajouterFiliereBox.TabStop = false;
             this.ajouterFiliereBox.Text = "Ajouter une filière";
-            this.ajouterFiliereBox.Enter += new System.EventHandler(this.ajouterFiliereBox_Enter);
             // 
             // ajouterFiliereBtn
             // 
             this.ajouterFiliereBtn.Location = new System.Drawing.Point(125, 154);
-            this.ajouterFiliereBtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ajouterFiliereBtn.Margin = new System.Windows.Forms.Padding(2);
             this.ajouterFiliereBtn.Name = "ajouterFiliereBtn";
             this.ajouterFiliereBtn.Size = new System.Drawing.Size(56, 19);
             this.ajouterFiliereBtn.TabIndex = 2;
             this.ajouterFiliereBtn.Text = "Ajouter";
             this.ajouterFiliereBtn.UseVisualStyleBackColor = true;
+            this.ajouterFiliereBtn.Click += new System.EventHandler(this.ajouterFiliereBtn_Click);
             // 
             // ajouterFiliereInput
             // 
             this.ajouterFiliereInput.Location = new System.Drawing.Point(60, 101);
-            this.ajouterFiliereInput.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ajouterFiliereInput.Margin = new System.Windows.Forms.Padding(2);
             this.ajouterFiliereInput.Name = "ajouterFiliereInput";
             this.ajouterFiliereInput.Size = new System.Drawing.Size(218, 20);
             this.ajouterFiliereInput.TabIndex = 1;
@@ -515,7 +567,7 @@
             this.menu.Controls.Add(this.Reporting);
             this.menu.ItemSize = new System.Drawing.Size(49, 21);
             this.menu.Location = new System.Drawing.Point(-1, 0);
-            this.menu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menu.Margin = new System.Windows.Forms.Padding(2);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Drawing.Point(20, 3);
             this.menu.SelectedIndex = 0;
@@ -531,7 +583,7 @@
             this.Reporting.Controls.Add(this.reportingComboBox);
             this.Reporting.Location = new System.Drawing.Point(4, 25);
             this.Reporting.Name = "Reporting";
-            this.Reporting.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Reporting.Padding = new System.Windows.Forms.Padding(3);
             this.Reporting.Size = new System.Drawing.Size(824, 446);
             this.Reporting.TabIndex = 4;
             this.Reporting.Text = "ReportingPage";
@@ -596,7 +648,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 470);
             this.Controls.Add(this.menu);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "mainWindow";
             this.Text = "Gestion Des Etudiants";
             this.Load += new System.EventHandler(this.mainWindow_Load);
@@ -608,6 +660,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.FilierePage.ResumeLayout(false);
+            this.ModifiyingPannel.ResumeLayout(false);
+            this.ModifiyingPannel.PerformLayout();
             this.listeFiliereBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tableFiliere)).EndInit();
             this.ajouterFiliereBox.ResumeLayout(false);
@@ -668,6 +722,10 @@
         private System.Windows.Forms.Button reportingButton;
         private System.Windows.Forms.Button reportingGenerate;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Panel ModifiyingPannel;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox ModifiedName;
+        private System.Windows.Forms.Button ValidatioButton;
     }
 }
 

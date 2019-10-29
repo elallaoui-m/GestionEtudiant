@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace GestionEtudiant
 {
     public partial class mainWindow : Form{
-    
+        
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
         String cin;
@@ -22,31 +22,7 @@ namespace GestionEtudiant
 
         }
         
-        private void ajouterFiliereBox_Enter(object sender, EventArgs e)
-        {
-            if (female_radio.Checked)
-            {
-                choix = "M";
-            }
-            else choix = "F";
-            Etudiant p = new Etudiant();
-            p.cne = cne_textBox.Text;
-            p.nom = nom_textbox.Text;
-            p.prenom = prenom_textbox.Text;
-            p.adresse = adresse_textbox.Text;
-            p.sexe = choix[0];
-            p.date_naissance = date_naissance.Value;
-            p.tele = tele_textbox.Text;
-            ComboBoxItem cbm = (ComboBoxItem)comboBox2.SelectedItem;
 
-            p.id_filiere = cbm.Value1;
-            cl.Etudiant.InsertOnSubmit(p);
-
-            cl.SubmitChanges();
-
-            dataGridView1.Refresh();
-            MessageBox.Show("inserted");
-        }
 
         private void charger_donnes_Click(object sender, EventArgs e)
         {
@@ -140,10 +116,20 @@ namespace GestionEtudiant
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
-                      
+            loadFiliereData();
             FillFiliereCombobox();
             fillStatisticsChart();
+            ModifiyingPannel.Visible = false;
+        }
+        void loadFiliereData()
+        {   
+            var selectQuery =
+               from a in cl.filiere
+               select a;
 
+            tableFiliere.DataSource = selectQuery;
+            tableFiliere.ReadOnly = true;
+            tableFiliere.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         void fillStatisticsChart()
@@ -207,5 +193,55 @@ namespace GestionEtudiant
 
 
         }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ModifiyingPannel.Visible = false;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void modifierFiliereBtn_Click(object sender, EventArgs e)
+        {
+            ModifiyingPannel.Visible = true;
+        }
+
+        private void ajouterFiliereBtn_Click(object sender, EventArgs e)
+        {
+            filiere NewFil = new filiere();
+            NewFil.nom_filiere = ajouterFiliereInput.Text;
+            cl.filiere.InsertOnSubmit(NewFil);
+            cl.SubmitChanges();
+            loadFiliereData();
+            MessageBox.Show("Filiere bien ajoutee");
+            ajouterFiliereInput.Text ="";
+
+        }
+
+        private void supprimerFiliereBtn_Click(object sender, EventArgs e)
+        { try {
+                string rowindex = tableFiliere.CurrentCell.Value.ToString();
+                var delete = from p in cl.filiere
+                             where p.id_filiere == Convert.ToInt16(rowindex)// match the ecords.
+                             select p;
+                cl.filiere.DeleteOnSubmit(delete.SingleOrDefault());
+                cl.SubmitChanges();
+                loadFiliereData();
+                MessageBox.Show("la filliere a éte Supprimer avec Succes ");
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            }
     }
-}
+    }
+
