@@ -70,12 +70,7 @@ namespace GestionEtudiant
             //Console.Write(etu.FirstOrDefault().cne);
 
             dataGridView1.DataSource = etu;
-            var fil = from f in cl.filiere orderby f.nom_filiere select f;
-            comboBox2.Items.Clear();
-            foreach (var u in fil)
-            {
-                comboBox2.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
-            }
+           
         }
 
         private void Supprimer_Click(object sender, EventArgs e)
@@ -193,6 +188,7 @@ namespace GestionEtudiant
 
             con.Close();*/
 
+            FillFiliereCombobox();
             fillStatisticsChart();
 
         }
@@ -200,9 +196,23 @@ namespace GestionEtudiant
         void fillStatisticsChart()
         {
             var filiere = from f in cl.filiere select f;
-            Console.WriteLine("123");
+           
+            foreach (var x in filiere)
+            {
+                Console.WriteLine(x.nom_filiere);
+            }
 
             
+        }
+
+        void FillFiliereCombobox()
+        {
+            var fil = from f in cl.filiere orderby f.nom_filiere select f;
+            comboBox2.Items.Clear();
+            foreach (var u in fil)
+            {
+                comboBox2.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
+            }
         }
     }
 }
