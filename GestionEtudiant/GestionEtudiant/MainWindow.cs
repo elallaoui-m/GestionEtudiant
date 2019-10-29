@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace GestionEtudiant
 {
     public partial class mainWindow : Form{
-        string cs = "Data Source = DESKTOP-C0L5BHT\\SQLEXPRESS; Initial Catalog = gestion_etudiant; Integrated Security = True";
+        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["gestion_etudiantConnectionString"].ConnectionString;
         SqlConnection con;
         SqlDataReader datare;
     
@@ -49,11 +49,6 @@ namespace GestionEtudiant
 
             dataGridView1.Refresh();
             MessageBox.Show("inserted");
-        }
-
-        private void EtudiantPage_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void charger_donnes_Click(object sender, EventArgs e)
@@ -119,10 +114,6 @@ namespace GestionEtudiant
             dataGridView1.Sort(dataGridView1.Columns["nom"], ListSortDirection.Ascending);
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
 
         private void ComboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -141,11 +132,6 @@ namespace GestionEtudiant
             }
         }
 
-        private void TextBox6_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void ReportingGenerate_Click(object sender, EventArgs e)
         {
             ReportForm reportForm = new ReportForm();
@@ -160,31 +146,29 @@ namespace GestionEtudiant
             reportFormSingleStudent.Show();
         }
 
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void mainWindow_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection(cs);
+            /*con = new SqlConnection(cs);
             con.Open();
 
             //commande1
             SqlCommand cmd1 = con.CreateCommand();
-            cmd1.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f.id_filiere = 1";
+            cmd1.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f.id_filiere = 1";
             SqlDataReader lirecmd1 = cmd1.ExecuteReader();
+            lirecmd1.Close();
 
 
             //commande2
             SqlCommand cmd2 = con.CreateCommand();
-            cmd2.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f.id_filiere = 2";
+            cmd2.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f.id_filiere = 2";
             SqlDataReader lirecmd2 = cmd2.ExecuteReader();
+            lirecmd2.Close();
 
             //commande3
             SqlCommand cmd3 = con.CreateCommand();
-            cmd3.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f. id_filiere = 3";
+            cmd3.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f. id_filiere = 3";
             SqlDataReader lirecmd3 = cmd3.ExecuteReader();
+            lirecmd3.Close();
 
             DataTable dt1 = new DataTable();
             dt1.Load(lirecmd1);
@@ -195,13 +179,30 @@ namespace GestionEtudiant
 
 
 
+            int var1 = Int32.Parse(dt1.Rows[0][0].ToString());
+            int var2 = Int32.Parse(dt2.Rows[0][0].ToString());
+            int var3 = Int32.Parse(dt3.Rows[0][0].ToString());
 
-            chart1.Series["Nombre Etudiant"].Points.AddXY("informatique", dt1);
-            chart1.Series["Nombre Etudiant"].Points.AddXY("industriel", dt2);
-            chart1.Series["Nombre Etudiant"].Points.AddXY("telecome", dt3);
 
 
-            con.Close();
+
+            chart1.Series["Nombre Etudiant"].Points.AddXY("informatique", var1);
+            chart1.Series["Nombre Etudiant"].Points.AddXY("industriel", var2);
+            chart1.Series["Nombre Etudiant"].Points.AddXY("telecome", var3);
+
+
+            con.Close();*/
+
+            fillStatisticsChart();
+
+        }
+
+        void fillStatisticsChart()
+        {
+            var filiere = from f in cl.filiere select f;
+            Console.WriteLine("123");
+
+            
         }
     }
 }

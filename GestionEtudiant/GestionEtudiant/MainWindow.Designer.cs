@@ -136,7 +136,6 @@
             this.chart1.Size = new System.Drawing.Size(632, 471);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // EtudiantPage
             // 
@@ -158,7 +157,7 @@
             this.EtudiantPage.TabIndex = 2;
             this.EtudiantPage.Text = "Etudiant";
             this.EtudiantPage.UseVisualStyleBackColor = true;
-            this.EtudiantPage.Click += new System.EventHandler(this.EtudiantPage_Click);
+            
             // 
             // comboBox1
             // 
@@ -168,7 +167,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(298, 28);
             this.comboBox1.TabIndex = 11;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -654,7 +652,6 @@
             this.reportingTextBox.Size = new System.Drawing.Size(196, 26);
             this.reportingTextBox.TabIndex = 2;
             this.reportingTextBox.Visible = false;
-            this.reportingTextBox.TextChanged += new System.EventHandler(this.TextBox6_TextChanged);
             // 
             // reportingLabel
             // 
