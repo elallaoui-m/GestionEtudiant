@@ -12,9 +12,6 @@ using System.Windows.Forms;
 namespace GestionEtudiant
 {
     public partial class mainWindow : Form{
-        string cs = System.Configuration.ConfigurationManager.ConnectionStrings["gestion_etudiantConnectionString"].ConnectionString;
-        SqlConnection con;
-        SqlDataReader datare;
     
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
@@ -27,19 +24,19 @@ namespace GestionEtudiant
         
         private void ajouterFiliereBox_Enter(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            if (female_radio.Checked)
             {
                 choix = "M";
             }
             else choix = "F";
             Etudiant p = new Etudiant();
-            p.cne = textBox1.Text;
-            p.nom = textBox2.Text;
-            p.prenom = textBox3.Text;
-            p.adresse = textBox4.Text;
+            p.cne = cne_textBox.Text;
+            p.nom = nom_textbox.Text;
+            p.prenom = prenom_textbox.Text;
+            p.adresse = adresse_textbox.Text;
             p.sexe = choix[0];
-            p.date_naissance = dateTimePicker1.Value;
-            p.tele = textBox5.Text;
+            p.date_naissance = date_naissance.Value;
+            p.tele = tele_textbox.Text;
             ComboBoxItem cbm = (ComboBoxItem)comboBox2.SelectedItem;
 
             p.id_filiere = cbm.Value1;
@@ -75,27 +72,27 @@ namespace GestionEtudiant
 
         private void Supprimer_Click(object sender, EventArgs e)
         {
-            var p = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(textBox1.Text));
+            var p = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(cne_textBox.Text));
             cl.Etudiant.DeleteOnSubmit(p);
             cl.SubmitChanges();
         }
 
         private void Modifier_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            if (female_radio.Checked)
             {
                 choix = "M";
             }
             else choix = "F";
-            var etu = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(textBox1.Text));
-            etu.nom = textBox2.Text;
-            etu.prenom = textBox3.Text;
-            etu.adresse = textBox4.Text;
+            var etu = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(cne_textBox.Text));
+            etu.nom = nom_textbox.Text;
+            etu.prenom = prenom_textbox.Text;
+            etu.adresse = adresse_textbox.Text;
             etu.sexe = choix[0];
-            etu.date_naissance = dateTimePicker1.Value;
+            etu.date_naissance = date_naissance.Value;
             
-            etu.tele = textBox5.Text;
-            etu.id_filiere = Int32.Parse((string)comboBox1.SelectedValue);
+            etu.tele = tele_textbox.Text;
+            etu.id_filiere = Int32.Parse((string)cherche_etudiant_combobox.SelectedValue);
             cl.SubmitChanges();
         }
 
@@ -143,51 +140,7 @@ namespace GestionEtudiant
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
-            /*con = new SqlConnection(cs);
-            con.Open();
-
-            //commande1
-            SqlCommand cmd1 = con.CreateCommand();
-            cmd1.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f.id_filiere = 1";
-            SqlDataReader lirecmd1 = cmd1.ExecuteReader();
-            lirecmd1.Close();
-
-
-            //commande2
-            SqlCommand cmd2 = con.CreateCommand();
-            cmd2.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f.id_filiere = 2";
-            SqlDataReader lirecmd2 = cmd2.ExecuteReader();
-            lirecmd2.Close();
-
-            //commande3
-            SqlCommand cmd3 = con.CreateCommand();
-            cmd3.CommandText = "SELECT * FROM Etudiant e INNER JOIN filiere f ON e.id_filiere = f.id_filiere WHERE f. id_filiere = 3";
-            SqlDataReader lirecmd3 = cmd3.ExecuteReader();
-            lirecmd3.Close();
-
-            DataTable dt1 = new DataTable();
-            dt1.Load(lirecmd1);
-            DataTable dt2 = new DataTable();
-            dt2.Load(lirecmd2);
-            DataTable dt3 = new DataTable();
-            dt3.Load(lirecmd3);
-
-
-
-            int var1 = Int32.Parse(dt1.Rows[0][0].ToString());
-            int var2 = Int32.Parse(dt2.Rows[0][0].ToString());
-            int var3 = Int32.Parse(dt3.Rows[0][0].ToString());
-
-
-
-
-            chart1.Series["Nombre Etudiant"].Points.AddXY("informatique", var1);
-            chart1.Series["Nombre Etudiant"].Points.AddXY("industriel", var2);
-            chart1.Series["Nombre Etudiant"].Points.AddXY("telecome", var3);
-
-
-            con.Close();*/
-
+                      
             FillFiliereCombobox();
             fillStatisticsChart();
 
@@ -195,14 +148,19 @@ namespace GestionEtudiant
 
         void fillStatisticsChart()
         {
+            
             var filiere = from f in cl.filiere select f;
            
             foreach (var x in filiere)
             {
-                Console.WriteLine(x.nom_filiere);
+                var tmp = from e in cl.Etudiant
+                          where e.id_filiere == x.id_filiere
+                          select e;
+
+                chart1.Series["Nombre Etudiant"].Points.AddXY(x.nom_filiere, tmp.Count());
+
             }
 
-            
         }
 
         void FillFiliereCombobox()
@@ -213,6 +171,41 @@ namespace GestionEtudiant
             {
                 comboBox2.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
             }
+        }
+
+        private void Ajouter_Click(object sender, EventArgs e)
+        {
+            if (female_radio.Checked)
+            {
+                choix = "M";
+            }
+            else choix = "F";
+            var etu = new Etudiant();
+            etu.nom = nom_textbox.Text;
+            etu.prenom = prenom_textbox.Text;
+            etu.adresse = adresse_textbox.Text;
+            etu.sexe = choix[0];
+            etu.date_naissance = date_naissance.Value;
+
+            etu.tele = tele_textbox.Text;
+            etu.id_filiere = Int32.Parse((string)cherche_etudiant_combobox.SelectedValue);
+            cl.SubmitChanges();
+            MessageBox.Show("Inserted succesfuly");
+            dataGridView1.Refresh();
+            CleanTextBoxs();
+
+        }
+
+        void CleanTextBoxs()
+        {
+            nom_textbox.Text = "";
+            prenom_textbox.Text = "";
+            adresse_textbox.Text = "";
+            female_radio.Checked = false;
+            male_radio.Checked = false;
+            tele_textbox.Text = "";
+
+
         }
     }
 }
