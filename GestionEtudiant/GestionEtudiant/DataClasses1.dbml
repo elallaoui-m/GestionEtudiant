@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gestion_etudiant" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=MOUNIA-PC;Initial Catalog=gestion_etudiant;Integrated Security=True" SettingsObjectName="GestionEtudiant.Properties.Settings" SettingsPropertyName="gestion_etudiantConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=localhost;Initial Catalog=gestion_etudiant;Integrated Security=True" SettingsObjectName="GestionEtudiant.Properties.Settings" SettingsPropertyName="gestion_etudiantConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Etudiant" Member="Etudiant">
     <Type Name="Etudiant">
       <Column Name="id_etudiant" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace GestionEtudiant
@@ -299,13 +300,21 @@ namespace GestionEtudiant
 
         void FillChercherEtudiant()
         {
-            cherche_etudiant_combobox.Items.Clear();
-            var x = from e in cl.Etudiant select e;
-
-            foreach (var etu in x)
+            try
             {
-                cherche_etudiant_combobox.Items.Add(new ComboBoxItem(Int32.Parse(etu.cne), etu.cne + " " + etu.nom));
+                cherche_etudiant_combobox.Items.Clear();
+                var x = from e in cl.Etudiant select e;
+
+                foreach (var etu in x)
+                {
+                    cherche_etudiant_combobox.Items.Add(new ComboBoxItem(Int32.Parse(etu.cne), etu.cne +" "+etu.nom));
+                }
             }
+            catch(FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
 
 
         }
@@ -342,7 +351,7 @@ namespace GestionEtudiant
             FillTextBox_Etudiant(x.SingleOrDefault());
         }
 
-        void loadDataEtudiants()
+        public void loadDataEtudiants()
         {
             var etu = from p in cl.Etudiant
                       join d in cl.filiere on p.id_filiere equals d.id_filiere
@@ -387,12 +396,19 @@ namespace GestionEtudiant
 
         void FillReportingCombobox()
         {
-            CINreportingCombobox.Items.Clear();
-            var x = from e in cl.Etudiant select e;
-
-            foreach (var etu in x)
+            try
             {
-                CINreportingCombobox.Items.Add(new ComboBoxItem(Int32.Parse(etu.cne), etu.cne + " " + etu.nom));
+                CINreportingCombobox.Items.Clear();
+                var x = from e in cl.Etudiant select e;
+
+                foreach (var etu in x)
+                {
+                    CINreportingCombobox.Items.Add(new ComboBoxItem(Convert.ToInt32(etu.cne), etu.cne +" "+ etu.nom));
+                }
+            }
+            catch (FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -403,6 +419,12 @@ namespace GestionEtudiant
             fillStatisticsChart();
             FillChercherEtudiant();
             FillReportingCombobox();
+        }
+
+        private void Importer_Click(object sender, EventArgs e)
+        {
+            Importer im = new Importer();
+            im.ShowDialog();
         }
     }
     }
