@@ -143,6 +143,7 @@ namespace GestionEtudiant
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
+            HidePannels();
             /*con = new SqlConnection(cs);
             con.Open();
 
@@ -213,6 +214,34 @@ namespace GestionEtudiant
             {
                 comboBox2.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
             }
+        }
+
+        private void ajouterFiliereBtn_Click(object sender, EventArgs e)
+        {
+            filiere NewFil = new filiere();
+            NewFil.nom_filiere = ajouterFiliereInput.Text;
+            cl.filiere.InsertOnSubmit(NewFil);
+            cl.SubmitChanges();
+        }
+
+        private void ModifiyingPannel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void HidePannels()
+        {
+            ModifiyingPannel.Visible = false;
+        }
+
+        private void FilierePage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void modifierFiliereBtn_Click(object sender, EventArgs e)
+        {
+            ModifiyingPannel.Visible = true;
+
         }
     }
 }
