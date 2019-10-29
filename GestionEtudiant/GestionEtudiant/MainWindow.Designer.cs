@@ -44,7 +44,7 @@
             this.Tri_CRS = new System.Windows.Forms.Button();
             this.charger_donnes = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.choixFiliereCombo = new System.Windows.Forms.ComboBox();
             this.tele_textbox = new System.Windows.Forms.TextBox();
             this.adresse_textbox = new System.Windows.Forms.TextBox();
             this.date_naissance = new System.Windows.Forms.DateTimePicker();
@@ -82,6 +82,7 @@
             this.reportingTextBox = new System.Windows.Forms.TextBox();
             this.reportingLabel = new System.Windows.Forms.Label();
             this.reportingComboBox = new System.Windows.Forms.ComboBox();
+            this.resetForm = new System.Windows.Forms.Button();
             this.StatistiquePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.EtudiantPage.SuspendLayout();
@@ -127,6 +128,7 @@
             // 
             // EtudiantPage
             // 
+            this.EtudiantPage.Controls.Add(this.resetForm);
             this.EtudiantPage.Controls.Add(this.cherche_etudiant_combobox);
             this.EtudiantPage.Controls.Add(this.dataGridView1);
             this.EtudiantPage.Controls.Add(this.Importer);
@@ -154,14 +156,17 @@
             this.cherche_etudiant_combobox.Name = "cherche_etudiant_combobox";
             this.cherche_etudiant_combobox.Size = new System.Drawing.Size(200, 21);
             this.cherche_etudiant_combobox.TabIndex = 11;
+            this.cherche_etudiant_combobox.SelectedIndexChanged += new System.EventHandler(this.cherche_etudiant_combobox_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(422, 141);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(390, 178);
             this.dataGridView1.TabIndex = 10;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Importer
             // 
@@ -234,7 +239,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.choixFiliereCombo);
             this.groupBox1.Controls.Add(this.tele_textbox);
             this.groupBox1.Controls.Add(this.adresse_textbox);
             this.groupBox1.Controls.Add(this.date_naissance);
@@ -258,13 +263,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informations Etudiant";
             // 
-            // comboBox2
+            // choixFiliereCombo
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(150, 265);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(200, 21);
-            this.comboBox2.TabIndex = 16;
+            this.choixFiliereCombo.FormattingEnabled = true;
+            this.choixFiliereCombo.Location = new System.Drawing.Point(150, 265);
+            this.choixFiliereCombo.Name = "choixFiliereCombo";
+            this.choixFiliereCombo.Size = new System.Drawing.Size(200, 21);
+            this.choixFiliereCombo.TabIndex = 16;
             // 
             // tele_textbox
             // 
@@ -642,6 +647,16 @@
             this.reportingComboBox.TabIndex = 0;
             this.reportingComboBox.SelectedIndexChanged += new System.EventHandler(this.ComboBox3_SelectedIndexChanged);
             // 
+            // resetForm
+            // 
+            this.resetForm.Location = new System.Drawing.Point(497, 402);
+            this.resetForm.Name = "resetForm";
+            this.resetForm.Size = new System.Drawing.Size(75, 23);
+            this.resetForm.TabIndex = 12;
+            this.resetForm.Text = "Reinstaliser le formulaire";
+            this.resetForm.UseVisualStyleBackColor = true;
+            this.resetForm.Click += new System.EventHandler(this.resetForm_Click);
+            // 
             // mainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -698,7 +713,7 @@
         private System.Windows.Forms.Button Tri_CRS;
         private System.Windows.Forms.Button charger_donnes;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox choixFiliereCombo;
         private System.Windows.Forms.TextBox tele_textbox;
         private System.Windows.Forms.TextBox adresse_textbox;
         private System.Windows.Forms.DateTimePicker date_naissance;
@@ -726,6 +741,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ModifiedName;
         private System.Windows.Forms.Button ValidationButton;
+        private System.Windows.Forms.Button resetForm;
     }
 }
 

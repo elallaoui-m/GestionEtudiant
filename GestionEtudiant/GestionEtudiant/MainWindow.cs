@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -21,36 +22,28 @@ namespace GestionEtudiant
             InitializeComponent();
 
         }
-        
 
+        private void mainWindow_Load(object sender, EventArgs e)
+        {
+            loadFiliereData();
+            FillFiliereCombobox();
+            fillStatisticsChart();
+            FillChercherEtudiant();
+            ModifiyingPannel.Visible = false;
+        }
 
         private void charger_donnes_Click(object sender, EventArgs e)
         {
-            var etu = from p in cl.Etudiant
-                      join d in cl.filiere on p.id_filiere equals d.id_filiere
-                      select new
-                      {
-                          p.cne,
-                          p.nom,
-                          p.prenom,
-                          p.adresse,
-                          p.sexe,
-                          p.date_naissance,
-                          p.tele,
-                          d.nom_filiere
-                      };
-
-            //Console.Write(etu.FirstOrDefault().cne);
-
-            dataGridView1.DataSource = etu;
-           
+            loadDataEtudiants();
         }
 
         private void Supprimer_Click(object sender, EventArgs e)
         {
-            var p = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(cne_textBox.Text));
+            var p = cl.Etudiant.SingleOrDefault(x => x.cne == cne_textBox.Text);
             cl.Etudiant.DeleteOnSubmit(p);
             cl.SubmitChanges();
+            MessageBox.Show("Etudiant supprime");
+            CleanTextBoxs();
         }
 
         private void Modifier_Click(object sender, EventArgs e)
@@ -60,7 +53,7 @@ namespace GestionEtudiant
                 choix = "M";
             }
             else choix = "F";
-            var etu = cl.Etudiant.SingleOrDefault(x => x.id_etudiant == Convert.ToInt32(cne_textBox.Text));
+            var etu = cl.Etudiant.SingleOrDefault(x => x.cne ==cne_textBox.Text);
             etu.nom = nom_textbox.Text;
             etu.prenom = prenom_textbox.Text;
             etu.adresse = adresse_textbox.Text;
@@ -68,8 +61,13 @@ namespace GestionEtudiant
             etu.date_naissance = date_naissance.Value;
             
             etu.tele = tele_textbox.Text;
-            etu.id_filiere = Int32.Parse((string)cherche_etudiant_combobox.SelectedValue);
+            ComboBoxItem cnb = (ComboBoxItem)choixFiliereCombo.SelectedItem;
+            etu.id_filiere = cnb.Value1;
             cl.SubmitChanges();
+
+            MessageBox.Show("Modifie avec succes");
+            CleanTextBoxs();
+            
         }
 
         private void Tri_DCS_Click(object sender, EventArgs e)
@@ -114,15 +112,10 @@ namespace GestionEtudiant
             reportFormSingleStudent.Show();
         }
 
-        private void mainWindow_Load(object sender, EventArgs e)
-        {
-            loadFiliereData();
-            FillFiliereCombobox();
-            fillStatisticsChart();
-            ModifiyingPannel.Visible = false;
-        }
+
         void loadFiliereData()
-        {   
+        {
+            
             var selectQuery =
                from a in cl.filiere
                select a;
@@ -152,15 +145,27 @@ namespace GestionEtudiant
         void FillFiliereCombobox()
         {
             var fil = from f in cl.filiere orderby f.nom_filiere select f;
-            comboBox2.Items.Clear();
+            choixFiliereCombo.Items.Clear();
             foreach (var u in fil)
             {
-                comboBox2.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
+                choixFiliereCombo.Items.Add(new ComboBoxItem(u.id_filiere, u.nom_filiere));
             }
         }
 
         private void Ajouter_Click(object sender, EventArgs e)
         {
+            ComboBoxItem cmb = (ComboBoxItem)cherche_etudiant_combobox.SelectedItem;
+            var x = from et in cl.Etudiant
+                    where et.cne == cmb.Value1.ToString()
+                    select et;
+
+            if(x.Count() > 0)
+            {
+                MessageBox.Show("Cne deja utilise");
+                return;
+            }
+
+
             if (female_radio.Checked)
             {
                 choix = "M";
@@ -174,7 +179,8 @@ namespace GestionEtudiant
             etu.date_naissance = date_naissance.Value;
 
             etu.tele = tele_textbox.Text;
-            etu.id_filiere = Int32.Parse((string)cherche_etudiant_combobox.SelectedValue);
+            ComboBoxItem cnb = (ComboBoxItem)choixFiliereCombo.SelectedItem;
+            etu.id_filiere = cnb.Value1;
             cl.SubmitChanges();
             MessageBox.Show("Inserted succesfuly");
             dataGridView1.Refresh();
@@ -184,12 +190,15 @@ namespace GestionEtudiant
 
         void CleanTextBoxs()
         {
+            cne_textBox.Text = "";
             nom_textbox.Text = "";
             prenom_textbox.Text = "";
             adresse_textbox.Text = "";
             female_radio.Checked = false;
             male_radio.Checked = false;
             tele_textbox.Text = "";
+            choixFiliereCombo.Text = "";
+            date_naissance.Value = DateTimePicker.MinimumDateTime;
 
 
         }
@@ -240,6 +249,7 @@ namespace GestionEtudiant
 
         private void ajouterFiliereBtn_Click(object sender, EventArgs e)
         {
+            
             filiere NewFil = new filiere();
             NewFil.nom_filiere = ajouterFiliereInput.Text;
             cl.filiere.InsertOnSubmit(NewFil);
@@ -263,9 +273,109 @@ namespace GestionEtudiant
             }
             catch(SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                
+                MessageBox.Show(ex.Message +" ====== "+ cl.GetChangeSet().Deletes.Count());
+                Discard_deletes();
+                
             }
             }
+
+        void Discard_deletes()
+        {
+            ChangeSet changeSet = cl.GetChangeSet();
+            foreach (object objToDelete in changeSet.Deletes)
+            {
+                cl.GetTable(objToDelete.GetType()).InsertOnSubmit(objToDelete);
+            }
+        }
+
+        void FillChercherEtudiant()
+        {
+            var x = from e in cl.Etudiant select e;
+
+            foreach (var etu in x)
+            {
+                cherche_etudiant_combobox.Items.Add(new ComboBoxItem(Int32.Parse(etu.cne), etu.cne + " " + etu.nom));
+            }
+
+
+        }
+
+
+        void FillTextBox_Etudiant(Etudiant e)
+        {
+            cne_textBox.Text = e.cne;
+            nom_textbox.Text = e.nom;
+            prenom_textbox.Text = e.prenom;
+            adresse_textbox.Text = e.adresse;
+
+            if(e.sexe == 'M')
+            {
+                male_radio.Checked = true;
+            }
+            else
+            {
+                female_radio.Checked = true;
+            }
+            tele_textbox.Text = e.tele;
+            date_naissance.Value = (DateTime)e.date_naissance;
+            choixFiliereCombo.Text = e.filiere.nom_filiere;
+
+        }
+
+        private void cherche_etudiant_combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBoxItem cbbi = (ComboBoxItem)cherche_etudiant_combobox.SelectedItem;
+
+            var x = from et in cl.Etudiant
+                    where et.cne.Equals(cbbi.Value1.ToString())
+                    select et;
+            FillTextBox_Etudiant(x.SingleOrDefault());
+        }
+
+        void loadDataEtudiants()
+        {
+            var etu = from p in cl.Etudiant
+                      join d in cl.filiere on p.id_filiere equals d.id_filiere
+                      select new
+                      {
+                          p.cne,
+                          p.nom,
+                          p.prenom,
+                          p.adresse,
+                          p.sexe,
+                          p.date_naissance,
+                          p.tele,
+                          d.nom_filiere
+                      };
+
+            //Console.Write(etu.FirstOrDefault().cne);
+
+            dataGridView1.DataSource = etu;
+        }
+
+       
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(dataGridView1.SelectedRows.Count > 0)
+            {
+                var x = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                
+                var etudiant = from et in cl.Etudiant
+                               where et.cne == x
+                               select et;
+
+
+
+               FillTextBox_Etudiant(etudiant.SingleOrDefault());
+            }
+        }
+
+        private void resetForm_Click(object sender, EventArgs e)
+        {
+            CleanTextBoxs();
+        }
     }
     }
 
