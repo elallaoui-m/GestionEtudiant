@@ -13,12 +13,12 @@ namespace GestionEtudiant
 {
     public partial class mainWindow : Form{
         string cs = System.Configuration.ConfigurationManager.ConnectionStrings["gestion_etudiantConnectionString"].ConnectionString;
-        SqlConnection con;
-        SqlDataReader datare;
+        
     
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
         String cin;
+        
         public mainWindow()
         {
             InitializeComponent();
@@ -143,6 +143,10 @@ namespace GestionEtudiant
 
         private void mainWindow_Load(object sender, EventArgs e)
         {
+            var selectQuery =
+                from a in cl.filiere
+                select a;
+            tableFiliere.DataSource = selectQuery;
             HidePannels();
             /*con = new SqlConnection(cs);
             con.Open();
@@ -241,6 +245,16 @@ namespace GestionEtudiant
         private void modifierFiliereBtn_Click(object sender, EventArgs e)
         {
             ModifiyingPannel.Visible = true;
+
+        }
+
+        private void ValidateNewName_Click(object sender, EventArgs e)
+        {
+            HidePannels();
+        }
+
+        private void tableFiliere_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
