@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,11 @@ using System.Windows.Forms;
 
 namespace GestionEtudiant
 {
-    public partial class mainWindow : Form
-    {
+    public partial class mainWindow : Form{
+        string cs = "Data Source = DESKTOP-C0L5BHT\\SQLEXPRESS; Initial Catalog = gestion_etudiant; Integrated Security = True";
+        SqlConnection con;
+        SqlDataReader datare;
+    
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
         String cin;
@@ -154,6 +158,50 @@ namespace GestionEtudiant
             ReportFormSingleStudent reportFormSingleStudent = new ReportFormSingleStudent();
             reportFormSingleStudent.getCIN(cin.ToString());
             reportFormSingleStudent.Show();
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mainWindow_Load(object sender, EventArgs e)
+        {
+            con = new SqlConnection(cs);
+            con.Open();
+
+            //commande1
+            SqlCommand cmd1 = con.CreateCommand();
+            cmd1.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f.id_filiere = 1";
+            SqlDataReader lirecmd1 = cmd1.ExecuteReader();
+
+
+            //commande2
+            SqlCommand cmd2 = con.CreateCommand();
+            cmd2.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f.id_filiere = 2";
+            SqlDataReader lirecmd2 = cmd2.ExecuteReader();
+
+            //commande3
+            SqlCommand cmd3 = con.CreateCommand();
+            cmd3.CommandText = "SELECT * FROM Etudiant INNER JOIN filiere f ON Etudiant.id_filiere = filiere.id_filiere WHERE f. id_filiere = 3";
+            SqlDataReader lirecmd3 = cmd3.ExecuteReader();
+
+            DataTable dt1 = new DataTable();
+            dt1.Load(lirecmd1);
+            DataTable dt2 = new DataTable();
+            dt2.Load(lirecmd2);
+            DataTable dt3 = new DataTable();
+            dt3.Load(lirecmd3);
+
+
+
+
+            chart1.Series["Nombre Etudiant"].Points.AddXY("informatique", dt1);
+            chart1.Series["Nombre Etudiant"].Points.AddXY("industriel", dt2);
+            chart1.Series["Nombre Etudiant"].Points.AddXY("telecome", dt3);
+
+
+            con.Close();
         }
     }
 }

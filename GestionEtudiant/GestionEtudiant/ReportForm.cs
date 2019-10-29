@@ -13,7 +13,7 @@ namespace GestionEtudiant
 {
     public partial class ReportForm : Form
     {
-        String connectionString = "Server = localhost; Database = gestion_etudiant ; Integrated Security = True;";
+        String connectionString = "Server = localhost\\SQLEXPRESS; Database = gestion_etudiant ; Integrated Security = True;";
         SqlConnection cnn;
         SqlCommand command;
         SqlDataReader myReader;
