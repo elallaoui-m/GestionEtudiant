@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace GestionEtudiant
 {
     public partial class mainWindow : Form{
-        
+        string FiliereId;
         DataClasses1DataContext cl = new DataClasses1DataContext();
         string choix = "";
         String cin;
@@ -202,6 +202,22 @@ namespace GestionEtudiant
         private void button1_Click(object sender, EventArgs e)
         {
             ModifiyingPannel.Visible = false;
+            try
+            {
+                string rowindex = tableFiliere.CurrentCell.Value.ToString();
+                var update = (from p in cl.filiere
+                             where p.id_filiere == Convert.ToInt16(FiliereId)// match the ecords.
+                             select p).SingleOrDefault();
+                update.nom_filiere = ModifiedName.Text;
+                cl.SubmitChanges();
+                loadFiliereData();
+                MessageBox.Show("la filliere a été Modifié avec Succes ");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
@@ -212,6 +228,14 @@ namespace GestionEtudiant
         private void modifierFiliereBtn_Click(object sender, EventArgs e)
         {
             ModifiyingPannel.Visible = true;
+            
+             FiliereId = tableFiliere.CurrentCell.Value.ToString();
+            var select = (from p in cl.filiere
+                          where p.id_filiere == Convert.ToInt16(FiliereId)// match the ecords.
+                          select p).SingleOrDefault();
+
+            ModifiedName.Text = select.nom_filiere;
+
         }
 
         private void ajouterFiliereBtn_Click(object sender, EventArgs e)

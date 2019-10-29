@@ -64,7 +64,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.FilierePage = new System.Windows.Forms.TabPage();
             this.ModifiyingPannel = new System.Windows.Forms.Panel();
-            this.ValidatioButton = new System.Windows.Forms.Button();
+            this.ValidationButton = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.ModifiedName = new System.Windows.Forms.TextBox();
             this.listeFiliereBox = new System.Windows.Forms.GroupBox();
@@ -428,7 +428,7 @@
             // ModifiyingPannel
             // 
             this.ModifiyingPannel.BackColor = System.Drawing.Color.DimGray;
-            this.ModifiyingPannel.Controls.Add(this.ValidatioButton);
+            this.ModifiyingPannel.Controls.Add(this.ValidationButton);
             this.ModifiyingPannel.Controls.Add(this.label11);
             this.ModifiyingPannel.Controls.Add(this.ModifiedName);
             this.ModifiyingPannel.Location = new System.Drawing.Point(223, 52);
@@ -437,16 +437,16 @@
             this.ModifiyingPannel.TabIndex = 1;
             this.ModifiyingPannel.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // ValidatioButton
+            // ValidationButton
             // 
-            this.ValidatioButton.Location = new System.Drawing.Point(121, 97);
-            this.ValidatioButton.Margin = new System.Windows.Forms.Padding(2);
-            this.ValidatioButton.Name = "ValidatioButton";
-            this.ValidatioButton.Size = new System.Drawing.Size(56, 19);
-            this.ValidatioButton.TabIndex = 4;
-            this.ValidatioButton.Text = "Valider";
-            this.ValidatioButton.UseVisualStyleBackColor = true;
-            this.ValidatioButton.Click += new System.EventHandler(this.button1_Click);
+            this.ValidationButton.Location = new System.Drawing.Point(121, 97);
+            this.ValidationButton.Margin = new System.Windows.Forms.Padding(2);
+            this.ValidationButton.Name = "ValidationButton";
+            this.ValidationButton.Size = new System.Drawing.Size(56, 19);
+            this.ValidationButton.TabIndex = 4;
+            this.ValidationButton.Text = "Valider";
+            this.ValidationButton.UseVisualStyleBackColor = true;
+            this.ValidationButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // label11
             // 
@@ -725,7 +725,7 @@
         private System.Windows.Forms.Panel ModifiyingPannel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox ModifiedName;
-        private System.Windows.Forms.Button ValidatioButton;
+        private System.Windows.Forms.Button ValidationButton;
     }
 }
 
