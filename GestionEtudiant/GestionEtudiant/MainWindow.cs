@@ -43,7 +43,7 @@ namespace GestionEtudiant
             var p = cl.Etudiant.SingleOrDefault(x => x.cne == cne_textBox.Text);
             cl.Etudiant.DeleteOnSubmit(p);
             cl.SubmitChanges();
-            MessageBox.Show("Etudiant supprime");
+            MessageBox.Show("L'étudiant a été bien supprimé.");
             CleanTextBoxs();
             loadDataEtudiants();
         }
@@ -67,7 +67,7 @@ namespace GestionEtudiant
             etu.id_filiere = cnb.Value1;
             cl.SubmitChanges();
 
-            MessageBox.Show("Modifie avec succes");
+            MessageBox.Show("Les informations ont été bien modifiées.");
             CleanTextBoxs();
             
         }
@@ -166,7 +166,7 @@ namespace GestionEtudiant
 
             if(x.Count() > 0)
             {
-                MessageBox.Show("Cne deja utilise");
+                MessageBox.Show("Le CNE existe déjà dans la base de données!");
                 return;
             }
 
@@ -189,7 +189,7 @@ namespace GestionEtudiant
             etu.id_filiere = cnb.Value1;
             cl.Etudiant.InsertOnSubmit(etu);
             cl.SubmitChanges();
-            MessageBox.Show("Inserted succesfuly");
+            MessageBox.Show("L'étudiant a été ajouté avec succès.");
             dataGridView1.Refresh();
             CleanTextBoxs();
 
@@ -228,7 +228,7 @@ namespace GestionEtudiant
                 update.nom_filiere = ModifiedName.Text;
                 cl.SubmitChanges();
                 loadFiliereData();
-                MessageBox.Show("la filliere a été Modifié avec Succes ");
+                MessageBox.Show("La filière a été modifiée avec succès.");
             }
             catch (SqlException ex)
             {
@@ -263,7 +263,7 @@ namespace GestionEtudiant
             cl.filiere.InsertOnSubmit(NewFil);
             cl.SubmitChanges();
             loadFiliereData();
-            MessageBox.Show("Filiere bien ajoutee");
+            MessageBox.Show("La filière a été ajoutée avec succès.");
             ajouterFiliereInput.Text ="";
 
         }
@@ -277,7 +277,7 @@ namespace GestionEtudiant
                 cl.filiere.DeleteOnSubmit(delete.SingleOrDefault());
                 cl.SubmitChanges();
                 loadFiliereData();
-                MessageBox.Show("la filliere a éte Supprimer avec Succes ");
+                MessageBox.Show("La filière a été supprimée avec succès.");
             }
             catch(SqlException ex)
             {
