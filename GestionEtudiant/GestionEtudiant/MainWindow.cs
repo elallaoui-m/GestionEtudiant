@@ -41,12 +41,16 @@ namespace GestionEtudiant
 
         private void Supprimer_Click(object sender, EventArgs e)
         {
-            var p = cl.Etudiant.SingleOrDefault(x => x.cne == cne_textBox.Text);
-            cl.Etudiant.DeleteOnSubmit(p);
-            cl.SubmitChanges();
-            MessageBox.Show("L'étudiant a été bien supprimé.");
-            CleanTextBoxs();
-            loadDataEtudiants();
+            DialogResult dialog = MessageBox.Show("Voulez-vous vraiment supprimer cet étudiant","Supprimer un étudiant",MessageBoxButtons.YesNo,MessageBoxIcon.Question) ;
+            if (dialog == DialogResult.Yes)
+            {
+                var p = cl.Etudiant.SingleOrDefault(x => x.cne == cne_textBox.Text);
+                cl.Etudiant.DeleteOnSubmit(p);
+                cl.SubmitChanges();
+                MessageBox.Show("L'étudiant a été bien supprimé.");
+                CleanTextBoxs();
+                loadDataEtudiants();
+            }
         }
 
         private void Modifier_Click(object sender, EventArgs e)
@@ -271,13 +275,17 @@ namespace GestionEtudiant
 
         private void supprimerFiliereBtn_Click(object sender, EventArgs e)
         { try {
-                string rowindex = tableFiliere.CurrentCell.Value.ToString();
-                var delete = from p in cl.filiere
-                             where p.id_filiere == Convert.ToInt16(rowindex)// match the ecords.
-                             select p;
-                cl.filiere.DeleteOnSubmit(delete.SingleOrDefault());
-                cl.SubmitChanges();
-                loadFiliereData();
+                DialogResult dialog = MessageBox.Show("Voulez-vous vraiment supprimer cette filière", "Supprimer une Filière", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialog == DialogResult.Yes)
+                {
+                    string rowindex = tableFiliere.CurrentCell.Value.ToString();
+                    var delete = from p in cl.filiere
+                                 where p.id_filiere == Convert.ToInt16(rowindex)// match the ecords.
+                                 select p;
+                    cl.filiere.DeleteOnSubmit(delete.SingleOrDefault());
+                    cl.SubmitChanges();
+                    loadFiliereData();
+                }
                 MessageBox.Show("La filière a été supprimée avec succès.");
             }
             catch(SqlException ex)
@@ -425,6 +433,11 @@ namespace GestionEtudiant
         {
             Importer im = new Importer();
             im.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            ModifiyingPannel.Visible = false;
         }
     }
     }
